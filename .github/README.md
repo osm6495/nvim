@@ -1,3 +1,27 @@
+# AstroNvim configuration files
+## Usage
+Go to your .config folder and run ```git clone git@github.com/osm6495/vim``` to pull the config files down. The biggest changes are things like the modifications to init.lua that check if using WSL and allows that to share clipboard with windows.
+## My Nvim Setup notes
+- Install nvim
+- Install astrovim, follow directions on github repo for backing up settings etc.
+- /.config/nvim is the directory to keep in mind for most setup
+- Use a terminal with true color like ITerm2 for mac, wsl, or look on the astrovim repo for a link to others
+- :LspInstall [name of programming language usually. For go it’s gopls] - Install language server
+- :TSInstall [name of programming language] - Install TreeSitter config for language
+- :DapInstall <Press tab twice to see options, Delve is the Dap for go> - Install debugger
+## Nvim Cheatsheet
+
+`Shift + K` to hover documentation
+`/[query]` to search ahead and `?[query]` to search behind - `n` to go to the next finding, `N` to go backwards
+
+`leader + /` to comment a line
+
+`<b` and `>b` to move buffer tabs left and right
+
+`jk` can be used as escape
+
+
+# AstroNvim README
 <div align="center" id="madewithlua">
     <img src="https://astronvim.com/img/logo/astronvim.svg" width="110", height="100">
 </div>
