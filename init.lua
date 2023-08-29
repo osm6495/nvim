@@ -18,17 +18,24 @@ if astronvim.default_colorscheme then
   end
 end
 
-vim.g.clipboard = {
-    name = 'WslClipboard',
-    copy = {
-        ['+'] = 'clip.exe',
-        ['*'] = 'clip.exe',
-    },
-    paste = {
-        ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring():gsub("\\r", ""))',
-        ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring():gsub("\\r", ""))',
-    },
-    cache_enabled = 0,
-}
+local uname = vim.loop.os_uname()
+_G.OS = uname.sysname
+_G.IS_LINUX = OS == 'Linux'
+_G.IS_WSL = IS_LINUX and uname.release:find 'Microsoft' and true or false
+
+if IS_WSL then
+  vim.g.clipboard = {
+      name = 'WslClipboard',
+      copy = {
+          ['+'] = 'clip.exe',
+          ['*'] = 'clip.exe',
+      },
+      paste = {
+          ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring():gsub("\\r", ""))',
+          ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring():gsub("\\r", ""))',
+      },
+      cache_enabled = 0,
+  }
+end
 
 require("astronvim.utils").conditional_func(astronvim.user_opts("polish", nil, false), true)
